@@ -1,34 +1,35 @@
 import React from "react";
-import { Link } from "react-scroll";
 import { Nav, Navbar } from "react-bootstrap";
-const Navigation = (props) => {
+import firebase from "firebase";
+import history from "../scripts/history";
+const Navigation = () => {
+  const signOut = (e) => {
+    e.preventDefault();
+    firebase
+      .auth()
+      .signOut()
+      .then(() => {
+        history.push("/");
+      });
+  };
+
   return (
-    <Navbar collapseOnSelect={true} expand="lg" className="navigation">
-      <Link
-        activeClass="active"
-        to="home"
-        spy={true}
-        smooth={true}
-        offset={0}
-        duration={500}
-      >
-        <Navbar.Brand>Here4U</Navbar.Brand>
-      </Link>
+    <Navbar expand="lg" className="navigation">
+      <Navbar.Brand>MeChat</Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
-        <Nav className="mr-auto">
+        <Nav className="me-auto">
+          <Nav.Link href="/NorthHacks/#/mission">About</Nav.Link>
+          <Nav.Link href="/NorthHacks/#/mission">Profile</Nav.Link>
+        </Nav>
+        <Nav>
           <Nav.Link
-            eventKey={1}
-            as={Link}
-            activeClass="active"
-            to="software"
-            spy={true}
-            smooth={true}
-            offset={-30}
-            duration={500}
-            data-toggle="collapse"
-            data-target=".navbar-collapse.show"
-          ></Nav.Link>
+            onClick={(e) => {
+              signOut(e);
+            }}
+          >
+            SignOut
+          </Nav.Link>
         </Nav>
       </Navbar.Collapse>
     </Navbar>

@@ -1,4 +1,6 @@
-- fix small bug with handles in sign up
+- fix small bug with handles in sign up (FIXED)
+
+
 - fix profile (make it look nice)
 - figure out how to add profile pictures
 - figure out a search index so users can search each other up and see profiles

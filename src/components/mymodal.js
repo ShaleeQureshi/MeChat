@@ -19,7 +19,7 @@ const MyModal = (props) => {
       </Button>
 
       <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
+        <Modal.Header>
           <Modal.Title>{props.modalTitle}</Modal.Title>
         </Modal.Header>
         <Modal.Body>{props.modalBody}</Modal.Body>

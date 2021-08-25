@@ -5,6 +5,7 @@
 
 .navigation {
   padding: 20px;
+  background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
 }
 
 .footer {
@@ -27,7 +28,10 @@
   padding: 0 0.25em;
 }
 
-.img {
-  max-width: 200px;
-  max-height: 200px;
+#underline {
+  width: 50%;
+  border: 2px solid #00cdac;
+  opacity: 0.75;
+  margin-left: auto;
+  margin-right: auto;
 }

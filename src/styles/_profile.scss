@@ -1,0 +1,16 @@
+.profile-img {
+  max-width: 200px;
+  max-height: 200px;
+}
+
+.profile-user-info {
+  h3 {
+    font-family: Ubuntu-Regular;
+    font-size: 20px;
+  }
+  #handle {
+    color: rgb(118, 121, 131);
+    font-family: Ubuntu-Light;
+  }
+  background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+}

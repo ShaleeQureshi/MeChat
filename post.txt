@@ -1,0 +1,25 @@
+{(e) => {
+                e.preventDefault();
+                var currentDate = new Date();
+                firebase
+                  .database()
+                  .ref(
+                    "/users/" +
+                      firebase.auth().currentUser["uid"] +
+                      "/posts/" +
+                      currentDate.getFullYear() +
+                      "-" +
+                      (currentDate.getMonth() + 1) +
+                      "-" +
+                      currentDate.getDate() +
+                      "-" +
+                      currentDate.getHours() +
+                      "-" +
+                      currentDate.getMinutes() +
+                      "-" +
+                      currentDate.getSeconds()
+                  )
+                  .update({
+                    post: document.getElementById("123name").value,
+                  });
+              }}

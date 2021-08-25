@@ -10,7 +10,7 @@ class LoginPage extends React.Component {
   constructor() {
     super();
     this.state = {
-      handleExists: false,
+      handleChecked: false,
     };
   }
   // if (currentUser && typeof previousRoute === "undefined") {
@@ -110,13 +110,12 @@ class LoginPage extends React.Component {
                           "/handles/" + document.getElementById("handle").value
                         )
                         .on("value", (snapshot) => {
-                          if (snapshot.exists()) {
-                            this.setState({ handleExists: true });
+                          if (snapshot.exists() && !this.state.handleChecked) {
                             alert(
                               "Your handle already exists! Please change it and re-check"
                             );
                           } else {
-                            this.setState({ handleExists: false });
+                            this.setState({ handleChecked: true });
                             alert("Your handle is good to go!");
                           }
                         });
@@ -148,9 +147,9 @@ class LoginPage extends React.Component {
 
                       e.preventDefault();
 
-                      if (this.state.handleExists) {
+                      if (!this.state.handleChecked) {
                         alert(
-                          "Your handle already exists! Please change it and re-check it before submitting the form!"
+                          "Please check your handle before submitting the form!"
                         );
                       } else {
                         const name = document.getElementById("name").value;
