@@ -72,6 +72,22 @@ class ProfilePage extends React.Component {
     }
   }
 
+  updateProfilePicture(file) {
+    const storageRef = firebase
+      .storage()
+      .ref(`/pfp/${firebase.auth().currentUser["uid"]}/${file}`);
+    storageRef
+      .put(file)
+      .then((snapshot) => {
+        console.log(snapshot);
+        alert("File Uploaded");
+        snapshot.ref.getDownloadURL().then(function (url) {
+          console.log(url);
+        });
+      })
+      .catch((err) => alert(err));
+  }
+
   render() {
     return (
       <div>
@@ -88,6 +104,12 @@ class ProfilePage extends React.Component {
               modalTitle="Update User Information"
               modalBody={
                 <div>
+                  <Form.Group>
+                    <Form.Label>Update Profile Picture</Form.Label>
+                    <br />
+                    <Form.Control className="mb-2" type="file" id="picture" />
+                  </Form.Group>
+
                   <Form.Group>
                     <Form.Label>Name</Form.Label>
                     <Form.Control
@@ -120,7 +142,25 @@ class ProfilePage extends React.Component {
                     variant="outline-success"
                     onClick={(e) => {
                       e.preventDefault();
-                      alert(document.getElementById("name").value);
+                      const name = document.getElementById("name").value;
+                      if (name !== "") {
+                        firebase
+                          .database()
+                          .ref(`/users/${firebase.auth().currentUser["uid"]}`)
+                          .update({
+                            name: document.getElementById("name").value,
+                          })
+                          .then(() => {
+                            alert("Name updated to: " + name);
+                            window.location.reload();
+                          });
+                      }
+                      const file = document.getElementById("picture").value;
+
+                      alert(name + "\n" + file.split("\\").pop());
+                      if (file !== null || file !== undefined) {
+                        this.updateProfilePicture(file);
+                      }
                     }}
                   >
                     Save Data
@@ -143,7 +183,7 @@ class ProfilePage extends React.Component {
               {this.state.posts.map((post) => {
                 return (
                   <Card key={post.time} className="mt-3 mb-3">
-                    <Card.Header>post.title</Card.Header>
+                    <Card.Header>{post.title}</Card.Header>
                     <Card.Body>
                       <Card.Text>{post.post}</Card.Text>
                     </Card.Body>

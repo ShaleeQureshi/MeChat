@@ -5,3 +5,6 @@
 - figure out how to add profile pictures
 - figure out a search index so users can search each other up and see profiles
 - tbd
+
+
+-- FIX IMAGE STORAGE PROBLEM (FILE NOT SUPPORTED)
